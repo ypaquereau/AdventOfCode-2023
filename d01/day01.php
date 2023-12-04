@@ -3,9 +3,9 @@
 $total = 0;
 
 foreach (file('input') as $line) {
-    preg_match_all('/[1-9]|one|two|three|four|five|six|seven|eight|nine/', $line, $matches);
+    preg_match_all('/(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))/', $line, $matches);
 
-    $numbers = $matches[0];
+    $numbers = $matches[1];
 
     $firstNumber = getNumber($numbers[array_key_first($numbers)]);
     $lastNumber = getNumber($numbers[array_key_last($numbers)]);
@@ -13,7 +13,6 @@ foreach (file('input') as $line) {
     $total += (int) "$firstNumber$lastNumber";;
 }
 
-# Print 53974
 echo $total . "\n";
 
 function getNumber(string $number): string
